@@ -13,6 +13,7 @@ if [[ $1 != "all" && $1 != "front" && $1 != "bend" ]]; then
 fi
 
 if [[ $1 == "all" || $1 == "front" ]]; then
+    touch ${basepath}/src/index.html
     gulp clean && gulp default && gulp html
     rsync -avzl --timeout=5 --exclude=.svn --exclude=.git --exclude=.gitignore --exclude=.DS_Store --exclude=*.sh -e "ssh -i /Users/${user}/Public/ShellAlias/bootkey.pem" ${basepath}/dist/ root@129.28.120.42:/search/www/public/h5/${baseDir}/
     rsync -avzl --timeout=5 --delete --exclude=.svn --exclude=.git --exclude=.gitignore --exclude=.DS_Store --exclude=*.sh -e "ssh -i /Users/${user}/Public/ShellAlias/bootkey.pem" ${basepath}/dist/ root@129.28.120.42:/search/www/public/h5/${baseDir}/

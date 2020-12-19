@@ -330,7 +330,7 @@ function getUrlArg(arg, url){
 	if(url.indexOf('?') == -1 || arg == '')
 		return '';
 	url = url.substr(url.indexOf('?')+1);
-	var expr = new RegExp('(\\w+)=(\\w+)','ig');
+	var expr = new RegExp('(\\w+)=([^&\s]+)','ig');
 	var args = [];
 	var tmp = [];
 	while((tmp = expr.exec(url)) != null){
@@ -463,27 +463,31 @@ $(function () {
         });
     }
 	var placeholdText = '';
-	var key = getUrlArg('_k');
-	if (key && key.length > 0) {
-			if (key == 'hh') {
-					placeholdText = '胡胡快点吃狗粮';
-					$('#message-input').val(placeholdText);
-			}
-			if (placeholdText.length > 0) {
-					if (isWeiXin()) {
-						dataForWeixinShareTmp.contenturl += ('&_k=' + key);
-						var bindShareHandel = function() {
-								if(bindShared) {
-										setTimeout(function(){bindShare(dataForWeixinShareTmp)}, 50);
-								} else {
-										setTimeout(bindShareHandel, 100);
-								}
-						}
+	var kword = getUrlArg('_k');
+	if (kword && kword.length > 0) {
+		if (kword == 'hh') {
+				placeholdText = '胡胡快点吃狗粮';
+				$('#message-input').val(placeholdText);
+		} else {
+			alert(kword);
+			placeholdText = decodeURIComponent(kword);
+			$('#message-input').val(placeholdText);
 		}
-					bindShareHandel();
-					setTimeout(function(){
-								$('#msgform').submit();
-					});
+		if (placeholdText.length > 0) {
+			if (isWeiXin()) {
+				dataForWeixinShareTmp.contenturl += ('&_k=' + kword);
+				var bindShareHandel = function() {
+						if(bindShared) {
+								setTimeout(function(){bindShare(dataForWeixinShareTmp)}, 50);
+						} else {
+								setTimeout(bindShareHandel, 100);
+						}
+				}
 			}
+			bindShareHandel();
+			setTimeout(function(){
+				$('#msgform').submit();
+			}, 0);
+		}
 	}
 });
