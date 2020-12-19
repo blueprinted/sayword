@@ -24,6 +24,7 @@ foreach ($param as $pinyin) {
 		$cmd = "cd ".APP_ROOT."/data/audio/ && wget --no-check-certificate https://appcdn.fanyi.baidu.com/zhdict/mp3/{$pinyin}.mp3";
 		$msgline = exec($cmd, $out_arr, $out_var);
 		if ($out_var !== 0) {
+			appendlog("cmd={$cmd} exec fail");
 			apimessage(1, '生成音频文件失败', array());
 		}
 	}

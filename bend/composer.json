@@ -1,5 +1,6 @@
 {
     "require": {
-        "overtrue/pinyin": "~3.0"
+        "overtrue/pinyin": "~3.0",
+        "monolog/monolog": "^2.2"
     }
 }

@@ -20,7 +20,7 @@ fi
 
 if [[ $1 == "all" || $1 == "bend" ]]; then
     rsync -avzl --timeout=5 --exclude=.svn --exclude=.git --exclude=.gitignore --exclude=.DS_Store --exclude=*.sh --exclude=bend/data/cookiefile/* --exclude=bend/data/session/* --exclude=bend/log/* -e "ssh -i /Users/${user}/Public/ShellAlias/bootkey.pem" ${basepath}/bend root@129.28.120.42:/search/www/public/h5/${baseDir}/
-    ssh -i /Users/${user}/Public/ShellAlias/bootkey.pem root@129.28.120.42 "chmod -R 0777 /search/www/public/h5/${baseDir}/bend/data/audio && exit"
+    ssh -i /Users/${user}/Public/ShellAlias/bootkey.pem root@129.28.120.42 "chmod -R 0777 /search/www/public/h5/${baseDir}/bend/data/audio && chmod -R 0777 /search/www/public/h5/${baseDir}/bend/log && exit"
 fi
 
 echo "rsync done"
