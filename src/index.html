@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="format-detection" content="telephone=no"/>
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<title>帮你说</title>
+<meta title="帮你说" />
+<meta property="og:type" content="帮你说" />
+<meta property="og:title" content="帮你说" />
+<meta name="keywords" content="帮你说" />
+<meta itemprop="name" content="帮你说"/>
+<meta name="description" itemprop="description" content="中文转语音工具" />
+<meta desc="中文转语音工具" />
+<meta name="desc" content="中文转语音工具" />
+<meta summary="中文转语音工具" />
+<meta name="summary" content="中文转语音工具" />
+<meta content="中文转语音工具" />
+<meta desc="中文转语音工具" />
+<meta name="desc" content="中文转语音工具" />
+<meta name="description" itemprop="description" content="中文转语音工具" />
+<meta summary="中文转语音工具" />
+<meta name="summary" content="中文转语音工具" />
+<meta content="中文转语音工具" />
+<meta itemprop="image" content="https://www.bolatoo.com/h5/sayword/static/i/sayer2.png" />
+<meta property="og:description" content="中文转语音工具" />
+<meta property="og:image" content="https://www.bolatoo.com/h5/sayword/static/i/sayer2.png" />
+<meta property="og:url" content="https://www.bolatoo.com/h5/sayword/static/i/sayer2.png" />
+<meta name="sharecontent" data-msg-img="http://shouji.sogou.com/sapp/cj2017/static/i/share.jpg" data-msg-title="帮你说" data-msg-content="中文转语音工具" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<meta name="description" itemprop="description" content="帮你说" />
+		<meta http-equiv="X-UA-Compatible" content="IE=10;chrome=1;"/>
+		<meta name="MobileOptimized" content="640"/>
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+		<link rel="stylesheet" href="static/c/style.css" />
+		<script type="text/javascript">
+			var words=[];
+			var game;
+			var w = document.documentElement.clientWidth;
+			var h = document.documentElement.clientHeight;
+			var clientHeight = (h > w) ? 640 *  h/w : 1030;
+		</script>
+	</head>
+	<body>
+		<div id="loader">载入中，请稍等..&nbsp;</div>
+		<div id="bg">
+		<div class="meteor met1 star-move"></div>
+		<div class="meteor met2 star-move"></div>
+		<div class="meteor met3 star-move"></div>
+		<div class="meteor met4 star-move"></div>
+		</div>
+		<div id="gamer"></div>
+		<div class="phold" style="height:7.2%"></div>
+		<div id="message-box" class="message-box">
+			<div class="message-inner">
+				<form id="msgform" action="words.php" method="post">
+					<input type="hidden" name="dosubmit" value="true">
+					<input id="color-box" type="hidden" name="color" value="#ff6485">
+					<div class="message-input-wrap">
+						<div class="pholder" style="height:12%"></div>
+						<input id="message-input" type="text" class="message-input" name="message" placeholder="输入要读的文字" autocomplete="off" />
+					</div>
+					<button id="message-button" class="message-button" type="submit"><span clickbtn="true" style="width: 48px; height: 47.6505px; display: table-cell;">提交</span></button>
+				</form>
+			</div>
+		</div>
+		<div class="phold" style="height:2%"></div>
+		<div id="pinyin-box">
+			<textarea class="textarea-words" name="pinyin-words"></textarea>
+		</div>
+		<script type="text/javascript" src="static/j/jquery-2.1.0.min.js" ></script>
+		<script type="text/javascript" src="static/j/jquery.form.min.js" ></script>
+		<script type="text/javascript" src="static/j/phaser.2.7.10.min.js" ></script>
+		<script type="text/javascript" src="static/j/modernizr.custom.js" ></script>
+		<script type="text/javascript" src="static/j/game.phaser.js?v=1.03"></script>
+		<script type="text/javascript" src="static/j/index.js?v=1.32"></script>
+		<script>
+  		var _mtac = {"performanceMonitor":1,"senseQuery":1};
+  		(function() {
+  			var mta = document.createElement("script");
+  			mta.src = "//pingjs.qq.com/h5/stats.js?v2.0.4";
+  			mta.setAttribute("name", "MTAH5");
+  			mta.setAttribute("sid", "500575422");
+  			mta.setAttribute("cid", "500575423");
+  			var s = document.getElementsByTagName("script")[0];
+  			s.parentNode.insertBefore(mta, s);
+  		})();
+		</script>
+	</body>
+	<div class="ajaxtip"></div><div id="debug"></div>
+</html>
