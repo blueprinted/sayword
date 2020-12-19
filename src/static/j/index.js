@@ -39,30 +39,29 @@ $(function(){
 					url: 'bend/checkfile.php',
 					data: 'param='+$(this).val(),
 					success: function(resp) {
-console.log(resp, resp.status);
-						if(resp.status == 0) {
-						for (var idx=0; idx<resp.data.length; idx++) {
-							words.push({key:'word'+idx, 'src':'bend/data/audio/'+resp.data[idx]+'.mp3', audio:null, timer:null});
+                        console.log(resp, resp.status);
+					    if(resp.status == 0) {
+							for (var idx=0; idx<resp.data.length; idx++) {
+								words.push({key:'word'+idx, 'src':'bend/data/audio/'+resp.data[idx]+'.mp3', audio:null, timer:null});
+							}
+						    try{game.destroy()}catch(e){}
+							game = new Phaser.Game(640, clientHeight, Phaser.AUTO, $('#gamer')[0], {
+									preload: preload,
+									create: create,
+									update: update,
+									render: render
+							}, true);
+                            return;
 						}
-						try{game.destroy()}catch(e){}
-                                                game = new Phaser.Game(640, clientHeight,
-Phaser.AUTO, $('#gamer')[0], {
-                                                        preload: preload,
-                                                        create: create,
-                                                        update: update,
-                                                        render: render
-                                                }, true);
-return;
-						}
-							tiper(resp.message, {
-                                                                timeout: 2,
-                                                                before: function(){
-                                                $('input[name="message"]').data({value:$('input[name="message"]').val()}).val(' ');
-                                                                },
-                                                                callback: function() {
-                                                                        $('input[name="message"]').val($('input[name="message"]').data('value'));
-                                                                }
-                                                        });
+						tiper(resp.message, {
+							timeout: 2,
+							before: function(){
+			                    $('input[name="message"]').data({value:$('input[name="message"]').val()}).val(' ');
+							},
+							callback: function() {
+								$('input[name="message"]').val($('input[name="message"]').data('value'));
+							}
+                        });
 					},
 					error: function(xhr, errmsg) {
 						tiper(errmsg, {
@@ -78,9 +77,6 @@ return;
 					complete: function() {}
 				});
 			}
-			
-			//https:
-			
 		}
 	});
 });
@@ -109,7 +105,7 @@ function init_form() {
 			$('#message-button').attr('disabled', false);
 		},
 		success:function(resp){
-console.log(resp,resp.status);
+            console.log(resp,resp.status);
 			if(resp.status == 0) {//succ
 				//$('input[name="message"]').val('');
 				$('.textarea-words').val(resp.data.join('|')).trigger('input');
