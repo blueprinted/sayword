@@ -109,6 +109,9 @@ function init_form() {
 			if(resp.status == 0) {//succ
 				//$('input[name="message"]').val('');
 				$('.textarea-words').val(resp.data.join('|')).trigger('input');
+				dataForWeixinShareTmp = $.extend(dataForWeixinShareTmp, dataForWeixinShare);
+				dataForWeixinShareTmp.contenturl += ('&_k=' + encodeURIComponent($.trim($('input[name="message"]').val())));
+				bindShare(dataForWeixinShareTmp);
 			} else {
 				tiper(resp.message, {
 					timeout: 2,
@@ -476,11 +479,11 @@ $(function () {
 			if (isWeiXin()) {
 				dataForWeixinShareTmp.contenturl += ('&_k=' + kword);
 				var bindShareHandel = function() {
-						if(bindShared) {
-								setTimeout(function(){bindShare(dataForWeixinShareTmp)}, 50);
-						} else {
-								setTimeout(bindShareHandel, 100);
-						}
+					if(bindShared) {
+						setTimeout(function(){bindShare(dataForWeixinShareTmp)}, 50);
+					} else {
+						setTimeout(bindShareHandel, 100);
+					}
 				}
 			}
 			bindShareHandel();
