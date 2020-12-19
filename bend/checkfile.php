@@ -30,4 +30,3 @@ foreach ($param as $pinyin) {
 }
 
 apimessage(0, 'succ', $rdata);
-

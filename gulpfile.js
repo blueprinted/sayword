@@ -89,6 +89,17 @@ gulp.task('audio',function(callback){
     callback();
 });
 
+gulp.task('fonts',function(callback){
+    gulp.src(
+        [
+            'src/static/c/fonts/**',
+        ]
+    )
+        .pipe(debug({title:'fonts'}))
+        .pipe(gulp.dest('dist/static/c/fonts/'));
+    callback();
+});
+
 gulp.task('js',function(callback){
     gulp.src(['src/static/j/*.js'],{base:'src'})
         .pipe(babel())
@@ -163,6 +174,6 @@ gulp.task('copy',function(callback){
 });
 
 // gulp.task('default', gulp.series('clean', gulp.parallel('css','js','jsd','image'), 'html', 'copy'));
-gulp.task('default', gulp.series(['css', 'audio', 'js', 'jsd', 'image', 'html', 'copy'], function(callback){
+gulp.task('default', gulp.series(['css', 'audio', 'fonts', 'js', 'jsd', 'image', 'html', 'copy'], function(callback){
     callback()
 }));

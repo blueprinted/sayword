@@ -33,21 +33,16 @@ $(function(){
 			if(/^[a-zA-Z\d\|]+$/i.test($(this).val())) {
 				words = [];
 				var pinyins = $(this).val().split('|');	
-				/*
-				for (var idx = 0; idx < pinyins.length; idx++) {
-					words.push({key:'word'+idx, 'src':'data/audio/'+pinyins[idx]+'.mp3', audio:null, timer:null});
-				}
-				*/
 				$.ajax({
 					type: 'post',	
 					dataType: 'json',
-					url: 'checkfile.php',
+					url: 'bend/checkfile.php',
 					data: 'param='+$(this).val(),
 					success: function(resp) {
 console.log(resp, resp.status);
 						if(resp.status == 0) {
 						for (var idx=0; idx<resp.data.length; idx++) {
-							words.push({key:'word'+idx, 'src':'data/audio/'+resp.data[idx]+'.mp3', audio:null, timer:null});
+							words.push({key:'word'+idx, 'src':'bend/data/audio/'+resp.data[idx]+'.mp3', audio:null, timer:null});
 						}
 						try{game.destroy()}catch(e){}
                                                 game = new Phaser.Game(640, clientHeight,
@@ -465,35 +460,34 @@ $(function () {
                     });
                     wx.ready(function () {
                         bindShare(dataForWeixinShareTmp);
-			bindShared = true;
+                        bindShared = true;
                     });
                 }
             });
         });
     }
 	var placeholdText = '';
-        var key = getUrlArg('_k');
-        if (key && key.length > 0) {
-                if (key == 'hh') {
-                        placeholdText = '胡胡快点吃狗粮';
-                        $('#message-input').val(placeholdText);
-                }
-                if (placeholdText.length > 0) {
-                        if (isWeiXin()) {
-				dataForWeixinShareTmp.contenturl += ('&_k=' + key);
-                        	var bindShareHandel = function() {
-                                	if(bindShared) {
-                                        	setTimeout(function(){bindShare(dataForWeixinShareTmp)}, 50);
-                                	} else {
-                                        	setTimeout(bindShareHandel, 100);
-                                	}
-                        	}
+	var key = getUrlArg('_k');
+	if (key && key.length > 0) {
+			if (key == 'hh') {
+					placeholdText = '胡胡快点吃狗粮';
+					$('#message-input').val(placeholdText);
 			}
-                        bindShareHandel();
-                        setTimeout(function(){
-                                 $('#msgform').submit();
-                        });
-                }
-        }
+			if (placeholdText.length > 0) {
+					if (isWeiXin()) {
+						dataForWeixinShareTmp.contenturl += ('&_k=' + key);
+						var bindShareHandel = function() {
+								if(bindShared) {
+										setTimeout(function(){bindShare(dataForWeixinShareTmp)}, 50);
+								} else {
+										setTimeout(bindShareHandel, 100);
+								}
+						}
+		}
+					bindShareHandel();
+					setTimeout(function(){
+								$('#msgform').submit();
+					});
+			}
+	}
 });
-
