@@ -73,6 +73,22 @@ gulp.task('css',function(callback){
     callback();
 });
 
+gulp.task('audio',function(callback){
+    gulp.src('src/static/audio/*', {base:'src'})
+        .pipe(debug({title:'audio'}))
+        /** 非覆盖式 start */
+        .pipe(rename(function(path){
+            // path.basename += ".min";
+            // path.extname = ".css";
+        }))
+        .pipe(rev())
+        .pipe(gulp.dest('dist/'))
+        .pipe(rev.manifest())
+        .pipe(gulp.dest('rev/audio'));
+    /** 非覆盖式 end */
+    callback();
+});
+
 gulp.task('js',function(callback){
     gulp.src(['src/static/j/*.js'],{base:'src'})
         .pipe(babel())
@@ -147,6 +163,6 @@ gulp.task('copy',function(callback){
 });
 
 // gulp.task('default', gulp.series('clean', gulp.parallel('css','js','jsd','image'), 'html', 'copy'));
-gulp.task('default', gulp.series(['css', 'js', 'jsd', 'image', 'html', 'copy'], function(callback){
+gulp.task('default', gulp.series(['css', 'audio', 'js', 'jsd', 'image', 'html', 'copy'], function(callback){
     callback()
 }));
