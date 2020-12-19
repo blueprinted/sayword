@@ -469,7 +469,6 @@ $(function () {
 				placeholdText = '胡胡快点吃狗粮';
 				$('#message-input').val(placeholdText);
 		} else {
-			alert(kword);
 			placeholdText = decodeURIComponent(kword);
 			$('#message-input').val(placeholdText);
 		}
