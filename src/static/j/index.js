@@ -109,7 +109,7 @@ function init_form() {
 			if(resp.status == 0) {//succ
 				//$('input[name="message"]').val('');
 				$('.textarea-words').val(resp.data.join('|')).trigger('input');
-				if (isWeiXin()()) {
+				if (isWeiXin()) {
 					dataForWeixinShareTmp = $.extend(dataForWeixinShareTmp, dataForWeixinShare);
 					dataForWeixinShareTmp.contenturl += ('&_k=' + encodeURIComponent($.trim($('input[name="message"]').val())));
 					bindShare(dataForWeixinShareTmp);
